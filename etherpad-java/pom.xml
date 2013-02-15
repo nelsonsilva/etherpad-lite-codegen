@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.etherpad</groupId>
+	<artifactId>etherpad-client</artifactId>
+	<packaging>jar</packaging>
+	<name>etherpad-client</name>
+	<version>1.0</version>
+
+
+	<build>
+		<plugins>
+			<plugin>
+		        <groupId>net.alchim31.maven</groupId>
+		        <artifactId>scala-maven-plugin</artifactId>
+		        <executions>
+		          <execution>
+		            <goals>
+		              <goal>compile</goal>
+		            </goals>
+		          </execution>
+		        </executions>
+		    </plugin>
+
+			<plugin>
+			    <groupId>net.alchim31.maven</groupId>
+			    <artifactId>scala-maven-plugin</artifactId>
+			    <executions>
+			        <execution>
+			            <id>codegen</id>
+			            <phase>generate-sources</phase>
+			            <goals>
+			                <goal>run</goal>
+			            </goals>
+					    <configuration>
+					      <launchers>
+					        <launcher>
+					          <id>run-codegen</id>
+					          <mainClass>org.etherpad.codegen.java.JavaEtherpadCodegen</mainClass>
+					          <args>
+					            <arg>http://localhost:9001/rest/api</arg>
+					            <arg>YOURAPIKEY</arg>
+					          </args>
+					        </launcher>
+					      </launchers>
+					    </configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add_sources</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!--plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin-->
+		</plugins>
+	</build>
+
+	<dependencies>
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-client</artifactId>
+      <version>${jersey-version}</version>
+    </dependency>
+	<dependency>
+		<groupId>com.wordnik</groupId>
+		<artifactId>swagger-core_2.9.1</artifactId>
+		<version>${swagger-core-version}</version>
+	</dependency>
+    <dependency>
+	  <groupId>com.wordnik</groupId>
+	  <artifactId>swagger-codegen_2.9.1</artifactId>
+	  <version>${swagger-codegen-version}</version>
+	  <scope>compile</scope>
+	</dependency>
+	<dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${scala.version}</version>
+      <scope>compile</scope>
+    </dependency>
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>${junit-version}</version>
+		<scope>test</scope>
+	</dependency>
+	</dependencies>
+
+	<properties>
+    	<jersey-version>1.7</jersey-version>
+		<junit-version>4.8.1</junit-version>
+		<maven-plugin.version>1.0.0</maven-plugin.version>
+		<scala.version>2.9.1</scala.version>
+		<swagger-core-version>1.1.0</swagger-core-version>
+		<swagger-codegen-version>2.0.2-SNAPSHOT</swagger-codegen-version>
+	</properties>
+</project>
+

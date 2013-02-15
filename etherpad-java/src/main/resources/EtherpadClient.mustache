@@ -1,0 +1,28 @@
+package {{apiPackage}};
+
+import {{invokerPackage}}.ApiException;
+import {{invokerPackage}}.ApiInvoker;
+
+
+{{#apis}}
+import {{apiPackage}}.{{className}};
+{{/apis}}
+
+import java.util.*;
+
+public class EtherpadClient {
+
+	String basePath = "http://0.0.0.0:9001/rest";
+
+	{{#apis}}
+	public {{className}} {{name}};
+	{{/apis}}
+
+	public EtherpadClient(String basePath, String apiKey) {
+		ApiInvoker.getInstance().addDefaultHeader("apiKey", apiKey);
+		{{#apis}}
+		{{name}} = new {{className}}();
+		{{name}}.setBasePath(basePath);
+		{{/apis}}
+	}
+}
