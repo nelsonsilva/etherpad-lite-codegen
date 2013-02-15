@@ -41,6 +41,9 @@
 					            <arg>http://localhost:9001/rest/api</arg>
 					            <arg>YOURAPIKEY</arg>
 					          </args>
+					          <jvmArgs>
+					            <jvmArg>-DfileMap=${basedir}/../specs</jvmArg>
+					          </jvmArgs>
 					        </launcher>
 					      </launchers>
 					    </configuration>

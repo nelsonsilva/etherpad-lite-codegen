@@ -1,0 +1,1 @@
+{"apiVersion":"1.2.7","swaggerVersion":"1.1","basePath":"http://0.0.0.0:9001/rest","apis":[{"path":"/api/group","description":"none"},{"path":"/api/author","description":"none"},{"path":"/api/session","description":"none"},{"path":"/api/pad","description":"none"}]}
