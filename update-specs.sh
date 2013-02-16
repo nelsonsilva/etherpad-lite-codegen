@@ -1,7 +1,10 @@
 #!/bin/sh
-mkdir -p specs/api
-wget http://localhost:9001/rest/api -O specs/resources.json
-for resource in "pad" "session" "author" "group"
+for version in $(<VERSIONS)
 do
-  wget http://localhost:9001/rest/api/$resource -O specs/api/$resource
+    mkdir -p specs/$version/api
+    wget http://localhost:9001/rest/$version/api -O specs/$version/resources.json
+    for resource in "pad" "session" "author" "group"
+    do
+        wget http://localhost:9001/rest/$version/api/$resource -O specs/$version/api/$resource
+    done
 done

@@ -5,7 +5,7 @@
 	<artifactId>etherpad-client</artifactId>
 	<packaging>jar</packaging>
 	<name>etherpad-client</name>
-	<version>1.0</version>
+	<version>${env.API_VERSION}</version>
 
 
 	<build>
@@ -38,11 +38,11 @@
 					          <id>run-codegen</id>
 					          <mainClass>org.etherpad.codegen.java.JavaEtherpadCodegen</mainClass>
 					          <args>
-					            <arg>http://localhost:9001/rest/api</arg>
-					            <arg>YOURAPIKEY</arg>
+					            <arg>${env.URL}/rest/${env.API_VERSION}/api</arg>
+					            <arg>${env.API_KEY}</arg>
 					          </args>
 					          <jvmArgs>
-					            <jvmArg>-DfileMap=${basedir}/../specs</jvmArg>
+					            <jvmArg>-DfileMap=${basedir}/../specs/${env.API_VERSION}</jvmArg>
 					          </jvmArgs>
 					        </launcher>
 					      </launchers>
