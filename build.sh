@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "Building swagger-codegen ..."
 cd swagger-codegen
 mvn install -DskipTests=true

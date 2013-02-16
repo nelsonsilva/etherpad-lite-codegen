@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 for version in $(<VERSIONS)
 do
     mkdir -p specs/$version/api
